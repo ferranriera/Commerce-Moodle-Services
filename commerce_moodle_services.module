@@ -1,0 +1,16 @@
+<?php
+/**
+ * Implements field hook_menu().
+ */
+function commerce_moodle_services_menu() {
+    $items['admin/config/services/moodle-services'] = array(
+        'title' => 'Moodle Settings Webservice',
+        'description' => 'Configure webservices for moodle',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('commerce_moodle_services_admin_form'),
+        'access arguments' => array('administer'),
+        'type' => MENU_NORMAL_ITEM,
+        'file' => 'commerce_moodle_services.admin.inc',
+    );
+    return $items;
+}
