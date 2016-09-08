@@ -22,10 +22,9 @@ class MoodleServicesCohort extends MoodleServices {
                 'enrolments[0][courseid]' => $product->field_moodle_id['und'][0]['value']
             );
 
-            $functionname = 'enrol_manual_enrol_users';
-            $params = array();
+            $function_name = 'enrol_manual_enrol_users';
 
-            return $this->request(HttpClientRequest::METHOD_POST, $functionname, $params, $data);
+            return $this->request(HttpClientRequest::METHOD_POST, $function_name, $params = array(), $data);
     }
 
 }

@@ -38,10 +38,9 @@ class MoodleServicesUser extends MoodleServices{
             'users[0][email]' => $this->mail,
         );
 
-        $functionname = 'core_user_create_users';
-        $params= array();
+        $function_name = 'core_user_create_users';
 
-        return $this->request(HttpClientRequest::METHOD_POST, $functionname, $params, $data);
+        return $this->request(HttpClientRequest::METHOD_POST, $function_name, $params= array(), $data);
     }
 
     /**
@@ -54,10 +53,9 @@ class MoodleServicesUser extends MoodleServices{
             'criteria[0][value]' => $this->username
         );
 
-        $functionname = 'core_user_get_users';
-        $params= array();
+        $function_name = 'core_user_get_users';
 
-        return $this->request(HttpClientRequest::METHOD_POST, $functionname, $params, $data);
+        return $this->request(HttpClientRequest::METHOD_POST, $function_name, $params= array(), $data);
     }
 
 }

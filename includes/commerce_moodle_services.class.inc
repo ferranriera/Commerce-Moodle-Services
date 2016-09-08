@@ -3,7 +3,7 @@
 /**
  * Class MoodleServices
  */
-abstract class MoodleServices {
+class MoodleServices {
 
     /**
      * @var null
@@ -24,14 +24,14 @@ abstract class MoodleServices {
 
     /**
      * @param $method
-     * @param $functionname
+     * @param $function_name
      * @param $params
      * @param $data
      * @return mixed|null|string
      */
-    function request($method, $functionname, $params, $data) {
+    function request($method, $function_name, $params, $data) {
 
-        $url="{$this->url}/webservice/rest/server.php?moodlewsrestformat=json&wstoken={$this->token}&wsfunction={$functionname}";
+        $url="{$this->url}/webservice/rest/server.php?moodlewsrestformat=json&wstoken={$this->token}&wsfunction={$function_name}";
 
         $response = '';
         $formatter = new HttpClientCompositeFormatter(HttpClientBaseFormatter::FORMAT_FORM, HttpClientBaseFormatter::FORMAT_JSON);
@@ -59,9 +59,8 @@ abstract class MoodleServices {
             }
         }
         catch (HttpClientException $e) {
-            debug($e);
-            watchdog('Commerce Moodle Services', '%e', array('%e' => $e), WATCHDOG_ERROR);
-            drupal_set_message(t('An error occurred and Moodle enrollment did not complete. Please contact with the administrator'), 'error');
+            watchdog('Commerce Moodle Services', '%e', array('%e' => $e->getMessage()), WATCHDOG_ERROR);
+            drupal_set_message(t('There was a technical error in the connection with Moodle. Please contact with the administrator'), 'error');
         }
 
         return $response;
