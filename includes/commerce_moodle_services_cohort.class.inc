@@ -10,16 +10,12 @@ class MoodleServicesCohort extends MoodleServices {
      * @param $line
      * @return mixed|null|string
      */
-    function enrollCourse($moodle_user_id, $line) {
-
-            $line_item = commerce_line_item_load($line['line_item_id']);
-            $product_id = $line_item->commerce_product['und'][0]['product_id'];
-            $product = commerce_product_load($product_id);
+    function enrollCourse($moodle_user_id, $productId) {
 
             $data = array(
                 'enrolments[0][userid]' => $moodle_user_id,
                 'enrolments[0][roleid]' => '5',
-                'enrolments[0][courseid]' => $product->field_moodle_id['und'][0]['value']
+                'enrolments[0][courseid]' => $productId
             );
 
             $function_name = 'enrol_manual_enrol_users';

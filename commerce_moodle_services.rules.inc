@@ -31,7 +31,7 @@ function commerce_moodle_services_subscription($order){
         $response = $moodle->existsUser();
 
         if (!isset($response['users'][0])) {
-            //If users doesn't exists we create it.
+            //If user doesn't exists we create it.
             $response = $moodle->createUser();
             $moodle_user_id = $response[0]['id'];
         } else {
@@ -39,8 +39,10 @@ function commerce_moodle_services_subscription($order){
         }
 
         $moodle = new MoodleServicesCohort();
-        foreach ($order->commerce_line_items['und'] as $line) {
-            $response = $moodle->enrollCourse($moodle_user_id, $line);
+        $products = Parser::get($order->commerce_line_items['und']);
+
+        foreach ($products as $product) {
+            $response = $moodle->enrollCourse($moodle_user_id, $product);
 
             //This is weird. But if the response is NULL it means that the user has been enrolled to the course properly.
             if ($response == null) {

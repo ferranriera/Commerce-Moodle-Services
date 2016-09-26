@@ -8,3 +8,4 @@ core = 7.x
 files[] = includes/commerce_moodle_services.class.inc
 files[] = includes/commerce_moodle_services_user.class.inc
 files[] = includes/commerce_moodle_services_cohort.class.inc
+files[] = includes/commerce_moodle_parser.class.inc
